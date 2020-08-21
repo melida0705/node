@@ -4,10 +4,10 @@ const app = express();
 var mysql = require('mysql');
 app.use(express.json());
 var con = mysql.createConnection({
-    host:'localhost',
-     user:'root',
-     password:'',
-     database:'foodorder_db'
+    host:'www.djbinno.com',
+     user:'condosharp',
+     password:'Miamilakesdj5881',
+     database:'foodorder'
   });
   app.listen(PORT, function() {
     console.log(`Listening on Port ${PORT}`);
