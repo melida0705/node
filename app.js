@@ -1,12 +1,36 @@
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
+var mysql = require('mysql');
 app.use(express.json());
+var con = mysql.createConnection({
+    host:'localhost',
+     user:'root',
+     password:'',
+     database:'foodorder_db'
+  });
+  app.listen(PORT, function() {
+    console.log(`Listening on Port ${PORT}`);
+  });
+  con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+  });
 const courses = [
   { id: 1, name: "Algorithms" },
   { id: 2, name: "Software Engineering" },
   { id: 3, name: "Human Computer Interaction" }
 ];
+app.get('/restaurant',function(req,res){
+    con.query('select * from restaurant',function(error,rows,fields){
+        if(error) console.log(error);
+        else
+        {
+            console.log(rows);
+            res.send(rows);
+        }
+    })
+});
 app.get("/", function(req, res) {
   //when we get an http get request to the root/homepage
   res.send("Hello World");
@@ -61,7 +85,4 @@ app.put("/courses/:id", function(req, res) {
   course.name = req.body.name;
   //returns the updated object
   res.send(course);
-});
-app.listen(PORT, function() {
-  console.log(`Listening on Port ${PORT}`);
 });
