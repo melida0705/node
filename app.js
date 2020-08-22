@@ -161,41 +161,41 @@ app.post('/place-order/:customerid/:amount',function(req,res,next){
       if (error) {
   //         // handle error
       }
-       else{
-          console.log(result.insertId);
-          orderid=result.insertId;
-          for (i = 0; i < id.length; i++) 
-          {
-              food_id.push(id[i].food_id);
-              // con.query("select food.food_name,food.food_price FROM food where food.food_id='"+id[i].food_id+"'",function(error,result){
-              //  if(error)
-              //  {
-                              
-              //  }
-              // else
-              // {
-                              
-               con.query("insert into order_details(order_id,order_food_id) values ('"+orderid+"','"+id[i].food_id+"')",function(error,result)
-                  {
-                       console.log(result);
-                       console.log("im working");
-                  });
-               con.query("delete from cart where food_id='"+id[i].food_id+"'",function(error,result)
-               {
-                   if(error)
-                   {
+      else{
+        console.log(result.insertId);
+        orderid=result.insertId;
+        for (i = 0; i < id.length; i++) 
+        {
+            food_id.push(id[i].food_id);
+            // con.query("select food.food_name,food.food_price FROM food where food.food_id='"+id[i].food_id+"'",function(error,result){
+            //  if(error)
+            //  {
+                            
+            //  }
+            // else
+            // {
+                            
+             con.query("insert into order_details(order_id,order_food_id) values ('"+orderid+"','"+id[i].food_id+"')",function(error,result)
+                {
+                     console.log(result);
+                     console.log("im working");
+                });
+             con.query("delete from cart where food_id='"+id[i].food_id+"'",function(error,result)
+             {
+                 if(error)
+                 {
 
-                   }
-                   else{
-                       console.log("removed from cart");
-                   }
-               })                
-               // }
-             // });
-              } 
-            
-             
-        }
+                 }
+                 else{
+                     console.log("removed from cart");
+                 }
+             })                
+             // }
+           // });
+            } 
+          
+           
+      }
            
         });
  
