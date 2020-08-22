@@ -31,8 +31,8 @@ app.get('/restaurant',function(req,res){
         }
     })
 });
-app.get('/login',function(req,res){
-    con.query("select * from users where users.username='"+req.body.username+"' and users.password='"+req.body.password+"'",function(error,rows,fields){
+app.get('/login/:username/:password',function(req,res){
+    con.query("select * from users where users.username='"+req.params.username+"' and users.password='"+req.params.password+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
         {
