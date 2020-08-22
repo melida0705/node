@@ -31,7 +31,7 @@ app.get('/restaurant',function(req,res){
         }
     })
 });
-app.post('/login',function(req,res){
+app.get('/login',function(req,res){
     con.query("select * from users where users.username='"+req.body.username+"' and users.password='"+req.body.password+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
@@ -180,7 +180,7 @@ app.post('/place-order/:customerid/:amount',function(req,res,next){
                      console.log(result);
                      console.log("im working");
                 });
-             con.query("delete from cart where food_id='"+id[i].food_id+"'",function(error,result)
+             con.query("delete from cart where food_id='"+id[i].food_id+"' and username='"+req.params.customerid+"'",function(error,result)
              {
                  if(error)
                  {
