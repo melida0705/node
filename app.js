@@ -151,7 +151,7 @@ app.post('/place-order/:customerid/:sellerid/:foodid/:shipName/:address',functio
   //       console.log("1 record inserted, ID: " + result.insertId);
   //     });
 });
-app.post('/place-order/:amount',function(req,res,next){
+app.post('/place-order/:customerid/:amount',function(req,res,next){
   var id=req.body.cart;
   var restaurantID=id[0].restaurant_id;
   var food_id=[];
