@@ -153,11 +153,11 @@ app.post('/place-order/:customerid/:sellerid/:foodid/:shipName/:address',functio
 });
 app.post('/place-order/:amount',function(req,res,next){
   var id=req.body.cart;
-  
+  var restaurantID=id[0].restaurant_id;
   var food_id=[];
   var orderid;
   console.log(id.length)
-   con.query("insert into orders (order_customer_username,order_seller_username,order_shipname,order_address,order_amount) values('" +req.params.customerid + "','" +req.params.sellerid+ "','" +req.params.shipName + "','" +req.params.address + "','"+req.params.amount+"')",function(error,result){
+   con.query("insert into orders (order_customer_username,order_seller_username,order_shipname,order_address,order_amount,restaurant_id) values('" +req.params.customerid + "','" +req.params.sellerid+ "','" +req.params.shipName + "','" +req.params.address + "','"+req.params.amount+"','"+restaurantID+"')",function(error,result){
       if (error) {
   //         // handle error
       }
@@ -349,9 +349,9 @@ app.get('/restaurantfood/:id',function(req,res,next){
 //         }
 //     });
 // }
-app.get('/seller-allorder/:sellerid',function(req,res,next)
+app.get('/seller-allorder/:restaurantid',function(req,res,next)
 {
-  con.query("SELECT  * FROM orders  where order_seller_username='"+req.params.sellerid+"' and order_shipped='0' and order_preparation='0' and order_delivered='0'" ,function(error,rows,fields){
+  con.query("SELECT  * FROM orders  where restaurant_id='"+req.params.restaurantid+"' and order_shipped='0' and order_preparation='0' and order_delivered='0'" ,function(error,rows,fields){
       if(error) console.log(error);
       else
       {   console.log("Radim");
