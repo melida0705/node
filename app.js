@@ -31,7 +31,18 @@ app.get('/restaurant',function(req,res){
         }
     })
 });
+app.post('/login',function(req,res){
+    con.query("select * from users where users.username='"+req.body.username+"' and users.password='"+req.body.password+"'",function(error,rows,fields){
+        if(error) console.log(error);
+        else
+        {
 
+         
+            console.log(rows);
+            res.send(rows);
+        }
+    })
+});
 app.get('/menu/:id',function(req,res,next){
   var  ids=req.params.id;
      console.log(ids);
