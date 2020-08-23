@@ -531,9 +531,9 @@ app.post('/addcategory/:restaurantid/',function(req,res,next)
       }
   })
 })
-app.post('/addfood/:restaurantid/:categoryid/:foodname/:fooddescription/:foodprice',function(req,res,next)
+app.post('/addfood/:restaurantid/:categoryid/:foodname/:fooddescription/:foodprice/:foodimage',function(req,res,next)
 {
-  con.query("insert into food (restaurant_id,food_category_id,food_name,food_description,food_price) values('"+req.params.restaurantid + "','" +req.params.categoryid+ "','" +req.params.foodname+ "','" +req.params.fooddescription+ "','" +req.params.foodprice+ "')",function(error,result){
+  con.query("insert into food (restaurant_id,food_category_id,food_name,food_description,food_price,food_image) values('"+req.params.restaurantid + "','" +req.params.categoryid+ "','" +req.params.foodname+ "','" +req.params.fooddescription+ "','" +req.params.foodprice+ "','"+req.params.foodimage+"')",function(error,result){
 
       if(error) console.log(error);
       else
