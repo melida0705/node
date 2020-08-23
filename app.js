@@ -42,7 +42,7 @@ app.get('/reviews/:restaurantid',function(req,res){
   })
 });
 app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,res){
-  con.query('insert into reviews(customer_username,restaurant_id,mark,review) values("'+req.params.customerid+'","'+req.params.restaurantid+'","'+req.params.mark+'","'+req.params.review+'")',function(error,rows,fields){
+  con.query('insert into reviews (customer_username,restaurant_id,mark,review) values("'+req.params.customerid+'","'+req.params.restaurantid+'","'+req.params.mark+'","'+req.params.review+'")',function(error,rows,fields){
       if(error) console.log(error);
       else
       {
