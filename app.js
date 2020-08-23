@@ -430,7 +430,7 @@ app.get('/customer-allpreparationorder/:customerid',function(req,res,next)
       }
   })
 });
-app.get('/seller-alldelivery/:restarauntid',function(req,res,next)
+app.get('/seller-alldelivery/:restaurantid',function(req,res,next)
 {
   con.query("SELECT  * FROM orders  where restaurant_id='"+req.params.restaurantid+"' and order_shipped='1' and order_preparation='0'" ,function(error,rows,fields){
       if(error) console.log(error);
