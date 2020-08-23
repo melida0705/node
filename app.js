@@ -190,7 +190,7 @@ app.post('/place-order/:customerid/:amount',function(req,res,next){
   var food_id=[];
   var orderid;
   console.log(id.length)
-   con.query("insert into orders (order_customer_username,order_seller_username,order_shipname,order_address,order_amount,restaurant_id) values('" +req.params.customerid + "','" +req.params.sellerid+ "','" +req.params.shipName + "','" +req.params.address + "','"+req.params.amount+"','"+restaurantID+"')",function(error,result){
+   con.query("insert into orders (order_customer_username,order_seller_username,order_shipname,order_address,order_amount,restaurant_id) values('" +req.params.customerid + "','" +req.params.sellerid+ "','" +req.body.shipName + "','" +req.body.address + "','"+req.params.amount+"','"+restaurantID+"')",function(error,result){
       if (error) {
   //         // handle error
       }
