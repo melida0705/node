@@ -31,14 +31,34 @@ app.get('/restaurant',function(req,res){
         }
     })
 });
+app.get('/reviews/:restaurantid',function(req,res){
+  con.query('select * from reviews where restaurant_id="'+req.params.restaurantid+'"',function(error,rows,fields){
+      if(error) console.log(error);
+      else
+      {
+          console.log(rows);
+          res.send(rows);
+      }
+  })
+});
+app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,res){
+  con.query('insert into reviews(customer_username,restaurant_id,mark,review) values("'+req.params.customerid+'","'+req.params.restaurantid+'","'+req.params.review+'","'+req.params.restaurantid+'")',function(error,rows,fields){
+      if(error) console.log(error);
+      else
+      {
+          console.log(rows);
+          res.send(rows);
+      }
+  })
+});
 app.get('/login/:username/:password',function(req,res){
+  var status=0;
     con.query("select * from users where users.username='"+req.params.username+"' and users.password='"+req.params.password+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
         {
-
-         
             console.log(rows);
+            
             res.send(rows);
         }
     })
