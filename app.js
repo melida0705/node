@@ -548,7 +548,7 @@ app.post('/addfood/:restaurantid/:categoryid/:foodname/:fooddescription/:foodpri
 });
 app.put('/updatefood/:foodid/',function(req,res,next)
 {
-  con.query("UPDATE food SET food_name='"+req.body.foodname+"' where food_id='"+req.params.foodid+"'",function(error,result){
+  con.query("UPDATE food SET food_name='"+req.body.foodname+"',food_image='"+req.body.foodimage+"',food_price='"+req.body.food_price+"',food_description='"+req.body.food_description+"' where food_id='"+req.params.foodid+"'",function(error,result){
 
       if(error) console.log(error);
       else
@@ -563,7 +563,7 @@ app.put('/updatefood/:foodid/',function(req,res,next)
 })
 app.put('/updatecategory/:categoryid/',function(req,res,next)
 {
-  con.query("UPDATE category SET category_name='"+req.body.categoryname+"' where category_id='"+req.params.categoryid+"'",function(error,result){
+  con.query("UPDATE category SET category_name='"+req.body.categoryname+"',category_image='"+req.body.categoryimage+"' where category_id='"+req.params.categoryid+"'",function(error,result){
 
       if(error) console.log(error);
       else
