@@ -31,6 +31,17 @@ app.get('/restaurant',function(req,res){
         }
     })
 });
+app.get('/getrestaurantid/:username',function(req,res){
+
+  con.query('select * from seller where username="'+req.params.username+'"',function(error,rows,fields){
+    if(error) console.log(error);
+    else
+    {
+        console.log(rows);
+        res.send(rows);
+    }
+})
+})
 app.get('/reviews/:restaurantid',function(req,res){
   con.query('select * from reviews where restaurant_id="'+req.params.restaurantid+'"',function(error,rows,fields){
       if(error) console.log(error);
