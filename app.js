@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
 var mysql = require('mysql');
-require('dotenv').config();
+const dotenv=require('dotenv').config();
 app.use(express.json());
 var con = mysql.createConnection({
     host:'www.djbinno.com',
@@ -64,7 +64,7 @@ app.get('/send/:to/:username/:password',function(req,res)
     
    // link="http:";
    smtpTransport.sendMail({
-    from:'melidaradoncic@hotmail.com',
+    from:process.env.HOTMAIL_USER,
         to : req.params.to,
         subject :'Please confirm your Email account',
         html:`Click on this link to verify your email address:<a href="${url}">"${url}"</a>`
