@@ -46,7 +46,7 @@ app.get('/send/:to',function(req,res)
       },
     });
     
-    // link="klikni odek";
+    link="klikni odek";
   smtpTransport.sendMail({
     from:'melidaradoncic@hotmail.com',
         to : 'mradoncic@djbinno.com',
