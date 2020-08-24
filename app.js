@@ -3,6 +3,7 @@ const PORT =  3000;
 const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
+var md5 = require('md5');
 var mysql = require('mysql');
 const dotenv=require('dotenv');
 dotenv.config()
@@ -50,7 +51,6 @@ app.get('/send/:to/:username/:password',function(req,res)
 //   }
   
 // });
-
 
 //console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
 res.send("Bla")
@@ -189,7 +189,8 @@ app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,re
 
 app.get('/login/:username/:password',function(req,res){
   var status=0;
-    con.query("select * from users where users.username='"+req.params.username+"' and users.password='"+req.params.password+"'",function(error,rows,fields){
+  
+    con.query("select * from users where users.username='"+req.params.username+"' and users.password='"+md5(req.params.password)+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
         {
