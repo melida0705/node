@@ -104,7 +104,7 @@ app.get('/verify/:username/:token',function(req,res){
         res.send("<h1>Email is  Successfully verified</h1>");
     }
 })
-res.send(decodedtoken);
+//res.send(decodedtoken);
   
   console.log(req.protocol+":/"+req.get('host'));
   // if((req.protocol+"://"+req.get('host'))==("http://"+host))
