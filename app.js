@@ -1,9 +1,11 @@
-const PORT = process.env.PORT || 3000;
+
+const PORT =  3000;
 const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
 var mysql = require('mysql');
-const dotenv=require('dotenv').config();
+const dotenv=require('dotenv');
+dotenv.config()
 app.use(express.json());
 var con = mysql.createConnection({
     host:'www.djbinno.com',
