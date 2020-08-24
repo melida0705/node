@@ -47,12 +47,21 @@ app.get('/send/:to',function(req,res)
     // });
     
    // link="http:";
+   try{
+
+
   smtpTransport.sendMail({
     from:'melidaradoncic@hotmail.com',
         to : req.params.to,
         subject :'Please confirm your Email account',
-        html : `Hello,<br> Please Click on the link to verify your email.<br>`,
+        text:'CAO',
+       
   }).catch(error)
+  var mail=req.params.to;
+      res.send(mail)
+}catch{
+
+}
   // smtpTransport.sendMail(
   //     {
   //       from:"melidaradoncic@hotmail.com",
@@ -61,8 +70,7 @@ app.get('/send/:to',function(req,res)
   //       html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
     
   //     }).catch(err);
-     var mail=req.params.to;
-      res.send(mail)
+     
 });
 // app.get('/verify',function(req,res){
 //   console.log(req.protocol+":/"+req.get('host'));
