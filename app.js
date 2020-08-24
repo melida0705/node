@@ -53,7 +53,7 @@ app.get('/send/:to/:username/:password',function(req,res)
 
 
 //console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
-//res.send("Bla")
+res.send("Bla")
    rand=Math.floor((Math.random() * 100) + 54);
   //   var host=req.get('host');
   //   console.log(host);
@@ -88,7 +88,7 @@ app.get('/send/:to/:username/:password',function(req,res)
       else
       {   console.log("Radim");
           console.log(result);
-          res.send(result);
+          //res.send(result);
          
       }
   })
