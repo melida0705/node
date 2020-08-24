@@ -38,12 +38,17 @@ app.post('/send/:to',function(req,res)
    // host=req.get('host');
     //link="http://"+req.get('host')+"/verify?id="+rand;
     const smtpTransport=nodemailer.createTransport({
-      service:"hotmail",
+      host:'mail.djbinno.com',
+      port:25,
+      ssl:false,
+      tls:true,
+      
       auth:{
-        user:"melidaradoncic@hotmail.com",
-        password:"CocaColaMalboro123"
+        user:"mradoncic@djbinno.com",
+        password:"Miamilakesdj5881"
       },
       
+    
     });
     link="klikni odek";
   
