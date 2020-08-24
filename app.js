@@ -53,7 +53,7 @@ app.get('/send/:to/:username/:password',function(req,res)
 
 
 console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
-res.send("Bla")
+//res.send("Bla")
   rand=Math.floor((Math.random() * 100) + 54);
     var host=req.get('host');
     console.log(host);
@@ -70,19 +70,19 @@ res.send("Bla")
     // });
     
    // link="http:";
-   try{
-   smtpTransport.sendMail({
-    from:process.env.HOTMAIL_USER,
-        to : req.params.to,
-        subject :'Please confirm your Email account',
-        html:`Click on this link to verify your email address:<a href="${url}">"${url}"</a>`
+//    try{
+//    smtpTransport.sendMail({
+//     from:process.env.HOTMAIL_USER,
+//         to : req.params.to,
+//         subject :'Please confirm your Email account',
+//         html:`Click on this link to verify your email address:<a href="${url}">"${url}"</a>`
 
-  })
-  console.log("NECU")
-}
-  catch{
-    console.log("U KETS")
-  }
+//   })
+//   console.log("NECU")
+// }
+//   catch{
+//     console.log("U KETS")
+//   }
     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
       if(error) console.log(error);
       else
