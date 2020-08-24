@@ -189,8 +189,8 @@ app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,re
 
 app.get('/login/:username/:password',function(req,res){
   var status=0;
-  
-    con.query("select * from users where users.username='"+req.params.username+"' and users.password='"+md5.hex_md5(req.params.password)+"'",function(error,rows,fields){
+  var pass=md5(req.params.password);
+    con.query("select * from users where users.username='"+req.params.username+"' and users.password='"+pass+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
         {
