@@ -23,28 +23,27 @@ const courses = [
   { id: 3, name: "Human Computer Interaction" }
 ];
 
-const smtpTransport=nodemailer.createTransport({
-  service:"hotmail",
-  auth:{
-    user:"melidaradoncic@hotmail.com",
-    password:""
-  },
+// const smtpTransport=nodemailer.createTransport({
+//   service:"hotmail",
+//   auth:{
+//     user:"melidaradoncic@hotmail.com",
+//     password:""
+//   },
   
-});
+// });
 
 app.get('/send/:to',function(req,res)
 {
  // rand=Math.floor((Math.random() * 100) + 54);
    // host=req.get('host');
     //link="http://"+req.get('host')+"/verify?id="+rand;
-    // const smtpTransport=nodemailer.createTransport({
-    //   service:hotmail,
-    
-    //   auth:{
-    //     user:"melidaradoncic@hotmail.com",
-    //     password:"CocaColaMalboro123"
-    //   },
-    // });
+    const smtpTransport=nodemailer.createTransport({
+      service:hotmail,
+      auth:{
+        user:"melidaradoncic@hotmail.com",
+        password:"CocaColaMalboro123"
+      },
+    });
     
     // link="klikni odek";
   
