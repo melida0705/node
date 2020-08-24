@@ -88,7 +88,7 @@ console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
       else
       {   console.log("Radim");
           console.log(result);
-         // res.send(result);
+          res.send(result);
          
       }
   })
