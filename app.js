@@ -52,32 +52,32 @@ app.get('/send/:to/:username/:password',function(req,res)
 // });
 
 //console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
-res.send("Bla")
+//res.send("Bla")
    rand=Math.floor((Math.random() * 100) + 54);
   //   var host=req.get('host');
   //   console.log(host);
   //   console.log(rand)
-  //   url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
+     url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
   //   //link="http://"+req.get('host')+"/verify?id="+rand;
-    //  smtpTransport=nodemailer.createTransport({
-    //   service:'hotmail',
+     smtpTransport=nodemailer.createTransport({
+      service:'hotmail',
       
-    //   auth:{
-    //     user:"melidaradoncic@hotmail.com",
-    //     pass:"CocaColaMalboro123"
-    //   },
-    // });
+      auth:{
+        user: process.env.HOTMAIL_USER,
+        pass: process.env.HOTMAIL_PASSWORD
+      },
+    });
     
    // link="http:";
 //    try{
-//    smtpTransport.sendMail({
-//     from:process.env.HOTMAIL_USER,
-//         to : req.params.to,
-//         subject :'Please confirm your Email account',
-//         html:`Click on this link to verify your email address:<a href="${url}">"${url}"</a>`
+   smtpTransport.sendMail({
+    from: process.env.HOTMAIL_USER,
+        to : req.params.to,
+        subject :'Please confirm your Email account',
+        html:`Click on this link to verify your email address:<a href="${url}">"${url}"</a>`
 
-//   })
-//   console.log("NECU")
+   })
+ console.log("NECU")
 // }
 //   catch{
 //     console.log("U KETS")
@@ -87,7 +87,7 @@ res.send("Bla")
       else
       {   console.log("Radim");
           console.log(result);
-          //res.send(result);
+        //  res.send(rows);
          
       }
   })
