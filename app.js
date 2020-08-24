@@ -1,8 +1,8 @@
 
-const PORT =  3000;
+const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
-const nodemailer=require("nodemailer");
+
 
 var mysql = require('mysql');
 
@@ -189,7 +189,7 @@ app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,re
 app.get('/login/:username/:password',function(req,res){
   var status=0;
   var pass=req.params.password;
-  console.log(pass);
+ // console.log(pass);
     con.query("select users.username,users.password,users.user_type from users where users.username='"+req.params.username+"' and users.password='"+pass+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
