@@ -3,7 +3,7 @@ const PORT =  3000;
 const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
-var md5 = require('md5');
+const md5 = require('md5');
 var mysql = require('mysql');
 const dotenv=require('dotenv');
 dotenv.config()
