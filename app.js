@@ -57,6 +57,8 @@ app.post('/send/:to',function(req,res)
         html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
     
       }).catch(err);
+      var mail=req.params.to;
+      res.send(mail)
 });
 // app.get('/verify',function(req,res){
 //   console.log(req.protocol+":/"+req.get('host'));
