@@ -100,11 +100,11 @@ app.get('/verify/:username/:token',function(req,res){
     if(error) console.log(error);
     else
     {
-      con.query("update users set verified='1' where username='"+username+"'",function(error,result){
+      con.query("update users set verified='1' where username='"+req.params.username+"'",function(error,result){
    
         console.log(rows);
         res.send("<h1>Email is  Successfully verified</h1>");})
-        
+
     }
 })
 //res.send(decodedtoken);
