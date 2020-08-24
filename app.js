@@ -1,6 +1,7 @@
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
+var nodemailer=require("nodemailer")
 var mysql = require('mysql');
 app.use(express.json());
 var con = mysql.createConnection({
@@ -21,6 +22,57 @@ const courses = [
   { id: 2, name: "Software Engineering" },
   { id: 3, name: "Human Computer Interaction" }
 ];
+var rand,mailOptions,host,link;
+var smtpTransport=nodemailer.createTransport("SMTP",{
+  service:"Hotmail",
+  auth:{
+    user:"melidaradoncic@hotmail.com",
+    password:"CocaColaMalboro123"
+  }
+  
+})
+app.get('/send',function(req,res)
+{
+  rand=Math.floor((Math.random() * 100) + 54);
+    host=req.get('host');
+    link="http://"+req.get('host')+"/verify?id="+rand;
+  mailOptions={
+    to : req.body.to,
+    subject : "Please confirm your Email account",
+    html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+}
+smtpTransport.sendMail(mailOptions, function(error, response){
+  if(error){
+         console.log(error);
+     res.end("error");
+  }else{
+         console.log("Message sent: " + response.message);
+     res.end("sent");
+      }
+});
+})
+app.get('/verify',function(req,res){
+  console.log(req.protocol+":/"+req.get('host'));
+  if((req.protocol+"://"+req.get('host'))==("http://"+host))
+  {
+      console.log("Domain is matched. Information is from Authentic email");
+      if(req.body.id==rand)
+      {
+          console.log("email is verified");
+          res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+      }
+      else
+      {
+          console.log("email is not verified");
+          res.end("<h1>Bad Request</h1>");
+      }
+  }
+  else
+  {
+      res.end("<h1>Request is from unknown source");
+  }
+  });
+  
 app.get('/restaurant',function(req,res){
     con.query('select * from restaurant',function(error,rows,fields){
         if(error) console.log(error);
