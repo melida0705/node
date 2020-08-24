@@ -32,7 +32,7 @@ var smtpTransport=nodemailer.createTransport("SMTP",{
   
 })
 
-app.post('/send/:to',function(req,res)
+app.get('/send/:to',function(req,res)
 {
  // rand=Math.floor((Math.random() * 100) + 54);
    // host=req.get('host');
