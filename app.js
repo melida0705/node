@@ -51,7 +51,7 @@ app.get('/send/:to',function(req,res)
     from:'melidaradoncic@hotmail.com',
         to : req.params.to,
         subject :'Please confirm your Email account',
-        html : 'Hello,<br> Please Click on the link to verify your email.<br>',
+        html : `Hello,<br> Please Click on the link to verify your email.<br>`,
   }).catch(error)
   // smtpTransport.sendMail(
   //     {
