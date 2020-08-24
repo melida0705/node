@@ -39,9 +39,10 @@ app.get('/send/:to',function(req,res)
     //link="http://"+req.get('host')+"/verify?id="+rand;
      smtpTransport=nodemailer.createTransport({
       service:'hotmail',
+      
       auth:{
         user:"melidaradoncic@hotmail.com",
-        password:"CocaColaMalboro123"
+        pass:"CocaColaMalboro123"
       },
     });
     
