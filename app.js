@@ -24,7 +24,7 @@ const courses = [
 ];
 
 // const smtpTransport=nodemailer.createTransport({
-//   service:"hotmail",
+//   service:hotmail",
 //   auth:{
 //     user:"melidaradoncic@hotmail.com",
 //     password:""
@@ -38,7 +38,7 @@ app.get('/send/:to',function(req,res)
    // host=req.get('host');
     //link="http://"+req.get('host')+"/verify?id="+rand;
      smtpTransport=nodemailer.createTransport({
-      service:hotmail,
+      service:'hotmail',
       auth:{
         user:"melidaradoncic@hotmail.com",
         password:"CocaColaMalboro123"
