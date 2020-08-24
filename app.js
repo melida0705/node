@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
@@ -23,20 +23,35 @@ const courses = [
   { id: 3, name: "Human Computer Interaction" }
 ];
 
-const smtpTransport=nodemailer.createTransport({
+// const smtpTransport=nodemailer.createTransport({
+//   service:'hotmail',
+//   port:25,
+//   host:'smpt.live.com',
+//   auth:{
+//     user:"melidaradoncic@hotmail.com",
+//     pass:"CocaColaMalboro123"
+//   }
+  
+// });
+
+app.get('/send/:to',function(req,res)
+{ var smtpTransport=nodemailer.createTransport({
   service:'hotmail',
+  port:25,
+  host:'smpt.live.com',
   auth:{
     user:"melidaradoncic@hotmail.com",
     pass:"CocaColaMalboro123"
   }
   
 });
-
-app.get('/send/:to',function(req,res)
-{
- // rand=Math.floor((Math.random() * 100) + 54);
-   // host=req.get('host');
-    //link="http://"+req.get('host')+"/verify?id="+rand;
+res.send("Bla")
+  rand=Math.floor((Math.random() * 100) + 54);
+    var host=req.get('host');
+    //console.log(host);
+    console.log(rand)
+    url="https://foodorder0705.herokuapp.com/verify/"+rand;
+    link="http://"+req.get('host')+"/verify?id="+rand;
     //  smtpTransport=nodemailer.createTransport({
     //   service:'hotmail',
       
@@ -47,21 +62,18 @@ app.get('/send/:to',function(req,res)
     // });
     
    // link="http:";
-   try{
-
-
+   
   smtpTransport.sendMail({
     from:'melidaradoncic@hotmail.com',
         to : req.params.to,
         subject :'Please confirm your Email account',
-        text:'CAO',
-       
-  }).catch(error)
-  var mail=req.params.to;
-      res.send(mail)
-}catch{
+        html:`Click on this link to verify your email address:<a href="${url}">Click here</a>`
 
-}
+  })
+
+  
+ 
+
   // smtpTransport.sendMail(
   //     {
   //       from:"melidaradoncic@hotmail.com",
@@ -72,27 +84,31 @@ app.get('/send/:to',function(req,res)
   //     }).catch(err);
      
 });
-// app.get('/verify',function(req,res){
-//   console.log(req.protocol+":/"+req.get('host'));
-//   if((req.protocol+"://"+req.get('host'))==("http://"+host))
-//   {
-//       console.log("Domain is matched. Information is from Authentic email");
-//       if(req.body.id==rand)
-//       {
-//           console.log("email is verified");
-//           res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
-//       }
-//       else
-//       {
-//           console.log("email is not verified");
-//           res.end("<h1>Bad Request</h1>");
-//       }
-//   }
-//   else
-//   {
-//       res.end("<h1>Request is from unknown source");
-//   }
-//   });
+app.get('/verify/:token',function(req,res){
+  const decodedtoken=req.params.token;
+  console.log(decodedtoken);
+res.send(decodedtoken);
+  
+ // console.log(req.protocol+":/"+req.get('host'));
+  // if((req.protocol+"://"+req.get('host'))==("http://"+host))
+  // {
+  //     console.log("Domain is matched. Information is from Authentic email");
+  //     if(req.body.id==rand)
+  //     {
+  //         console.log("email is verified");
+  //         res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+  //     }
+  //     else
+  //     {
+  //         console.log("email is not verified");
+  //         res.end("<h1>Bad Request</h1>");
+  //     }
+  // }
+  // else
+  // {
+  //     res.end("<h1>Request is from unknown source");
+  // }
+  });
   
 app.get('/restaurant',function(req,res){
     con.query('select * from restaurant',function(error,rows,fields){
