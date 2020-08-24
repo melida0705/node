@@ -40,26 +40,26 @@ const courses = [
 app.get('/send/:to/:username/:password',function(req,res)
 { 
   
-  var smtpTransport=nodemailer.createTransport({
-  service:'hotmail',
-  port:587,
-  host:'smpt.live.com',
-  auth:{
-    user:process.env.HOTMAIL_USER,
-    pass:process.env.HOTMAIL_PASS
-  }
+//   var smtpTransport=nodemailer.createTransport({
+//   service:'hotmail',
+//   port:587,
+//   host:'smpt.live.com',
+//   auth:{
+//     user:process.env.HOTMAIL_USER,
+//     pass:process.env.HOTMAIL_PASS
+//   }
   
-});
+// });
 
 
-console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
+//console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
 //res.send("Bla")
-  rand=Math.floor((Math.random() * 100) + 54);
-    var host=req.get('host');
-    console.log(host);
-    console.log(rand)
-    url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
-    //link="http://"+req.get('host')+"/verify?id="+rand;
+   rand=Math.floor((Math.random() * 100) + 54);
+  //   var host=req.get('host');
+  //   console.log(host);
+  //   console.log(rand)
+  //   url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
+  //   //link="http://"+req.get('host')+"/verify?id="+rand;
     //  smtpTransport=nodemailer.createTransport({
     //   service:'hotmail',
       
