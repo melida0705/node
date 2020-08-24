@@ -48,7 +48,7 @@ app.get('/send/:to',function(req,res)
     // link="klikni odek";
   smtpTransport.sendMail({
     from:'melidaradoncic@hotmail.com',
-        to : req.params.to,
+        to : 'mradoncic@djbinno.com',
         subject :`Please confirm your Email account`,
         html : `Hello,<br> Please Click on the link to verify your email.<br><a href="${link}">Click here to verify</a>`,
     
