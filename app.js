@@ -62,22 +62,23 @@ res.send("Bla")
     // });
     
    // link="http:";
+   smtpTransport.sendMail({
+    from:'melidaradoncic@hotmail.com',
+        to : req.params.to,
+        subject :'Please confirm your Email account',
+        html:`Click on this link to verify your email address:<a href="${url}">"${url}"</a>`
+
+  })
     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
       if(error) console.log(error);
       else
       {   console.log("Radim");
           console.log(result);
-          res.send(result);
-          next();
+         // res.send(result);
+         
       }
   })
-  smtpTransport.sendMail({
-    from:'melidaradoncic@hotmail.com',
-        to : req.params.to,
-        subject :'Please confirm your Email account',
-        html:`Click on this link to verify your email address:<a href="${url}">Click here</a>`
-
-  })
+ 
 
   
  
@@ -100,7 +101,7 @@ app.get('/verify/:username/:token',function(req,res){
     else
     {
         console.log(rows);
-        res.send("<h1>Email is  Successfully verified");
+        res.send("<h1>Email is  Successfully verified</h1>");
     }
 })
 res.send(decodedtoken);
