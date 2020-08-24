@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
 var mysql = require('mysql');
-
+require('dotenv').config();
 app.use(express.json());
 var con = mysql.createConnection({
     host:'www.djbinno.com',
@@ -41,8 +41,8 @@ app.get('/send/:to/:username/:password',function(req,res)
   port:587,
   host:'smpt.live.com',
   auth:{
-    user:process.env.username,
-    pass:process.env.password
+    user:process.env.HOTMAIL_USER,
+    pass:process.env.HOTMAIL_PASSWORD
   }
   
 });
