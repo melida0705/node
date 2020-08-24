@@ -3,10 +3,9 @@ const PORT =  3000;
 const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
-const md5 = require('md5');
+
 var mysql = require('mysql');
-const dotenv=require('dotenv');
-dotenv.config()
+
 app.use(express.json());
 var con = mysql.createConnection({
     host:'www.djbinno.com',
