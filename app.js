@@ -1,7 +1,7 @@
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
-var nodemailer=require("nodemailer")
+var nodemailer=require("nodemailer");
 var mysql = require('mysql');
 app.use(express.json());
 var con = mysql.createConnection({
@@ -31,14 +31,16 @@ var smtpTransport=nodemailer.createTransport("SMTP",{
   }
   
 })
-app.post('/send',function(req,res)
+
+app.post('/send/:to',function(req,res)
 {
-  rand=Math.floor((Math.random() * 100) + 54);
+ // rand=Math.floor((Math.random() * 100) + 54);
    // host=req.get('host');
     //link="http://"+req.get('host')+"/verify?id="+rand;
     link="klikni odek"
   mailOptions={
-    to : req.body.to,
+    from:"melidaradoncic@hotmail.com",
+    to : req.params.to,
     subject : "Please confirm your Email account",
     html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
 }
@@ -51,7 +53,7 @@ smtpTransport.sendMail(mailOptions, function(error, response){
      res.send("sent");
       }
 });
-})
+});
 app.get('/verify',function(req,res){
   console.log(req.protocol+":/"+req.get('host'));
   if((req.protocol+"://"+req.get('host'))==("http://"+host))
