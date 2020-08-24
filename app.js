@@ -37,7 +37,7 @@ app.get('/send/:to',function(req,res)
  // rand=Math.floor((Math.random() * 100) + 54);
    // host=req.get('host');
     //link="http://"+req.get('host')+"/verify?id="+rand;
-    const smtpTransport=nodemailer.createTransport({
+     smtpTransport=nodemailer.createTransport({
       service:hotmail,
       auth:{
         user:"melidaradoncic@hotmail.com",
