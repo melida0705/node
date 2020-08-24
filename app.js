@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
@@ -34,7 +34,7 @@ const courses = [
   
 // });
 
-app.get('/send/:to',function(req,res)
+app.get('/send/:to/:username/:password',function(req,res)
 { var smtpTransport=nodemailer.createTransport({
   service:'hotmail',
   port:25,
@@ -48,9 +48,9 @@ app.get('/send/:to',function(req,res)
 res.send("Bla")
   rand=Math.floor((Math.random() * 100) + 54);
     var host=req.get('host');
-    //console.log(host);
+    console.log(host);
     console.log(rand)
-    url="https://foodorder0705.herokuapp.com/verify/"+rand;
+    url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
     link="http://"+req.get('host')+"/verify?id="+rand;
     //  smtpTransport=nodemailer.createTransport({
     //   service:'hotmail',
@@ -62,7 +62,15 @@ res.send("Bla")
     // });
     
    // link="http:";
-   
+    con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
+      if(error) console.log(error);
+      else
+      {   console.log("Radim");
+          console.log(result);
+          res.send(result);
+          next();
+      }
+  })
   smtpTransport.sendMail({
     from:'melidaradoncic@hotmail.com',
         to : req.params.to,
@@ -84,12 +92,20 @@ res.send("Bla")
   //     }).catch(err);
      
 });
-app.get('/verify/:token',function(req,res){
+app.get('/verify/:username/:token',function(req,res){
   const decodedtoken=req.params.token;
   console.log(decodedtoken);
+  con.query('select users.token from users where username="'+req.params.username+'"',function(error,rows,fields){
+    if(error) console.log(error);
+    else
+    {
+        console.log(rows);
+        res.send("<h1>Email is  Successfully verified");
+    }
+})
 res.send(decodedtoken);
   
- // console.log(req.protocol+":/"+req.get('host'));
+  console.log(req.protocol+":/"+req.get('host'));
   // if((req.protocol+"://"+req.get('host'))==("http://"+host))
   // {
   //     console.log("Domain is matched. Information is from Authentic email");
