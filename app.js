@@ -34,8 +34,9 @@ var smtpTransport=nodemailer.createTransport("SMTP",{
 app.post('/send',function(req,res)
 {
   rand=Math.floor((Math.random() * 100) + 54);
-    host=req.get('host');
-    link="http://"+req.get('host')+"/verify?id="+rand;
+   // host=req.get('host');
+    //link="http://"+req.get('host')+"/verify?id="+rand;
+    link="klikni odek"
   mailOptions={
     to : req.body.to,
     subject : "Please confirm your Email account",
