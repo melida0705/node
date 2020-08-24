@@ -45,7 +45,7 @@ app.get('/send/:to/:username/:password',function(req,res)
   }
   
 });
-res.send("Bla")
+//res.send("Bla")
   rand=Math.floor((Math.random() * 100) + 54);
     var host=req.get('host');
     console.log(host);
