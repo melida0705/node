@@ -32,7 +32,7 @@ const smtpTransport=nodemailer.createTransport({
   
 });
 
-app.get('/send/:to',function(req,res)
+app.post('/send/:to',function(req,res)
 {
  // rand=Math.floor((Math.random() * 100) + 54);
    // host=req.get('host');
@@ -45,7 +45,7 @@ app.get('/send/:to',function(req,res)
       },
       
     });
-    link="klikni odek"
+    link="klikni odek";
   
   smtpTransport.sendMail(
       {
