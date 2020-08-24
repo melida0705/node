@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const nodemailer=require("nodemailer");
 var mysql = require('mysql');
+
 app.use(express.json());
 var con = mysql.createConnection({
     host:'www.djbinno.com',
@@ -37,7 +38,7 @@ const courses = [
 app.get('/send/:to/:username/:password',function(req,res)
 { var smtpTransport=nodemailer.createTransport({
   service:'hotmail',
-  port:25,
+  port:587,
   host:'smpt.live.com',
   auth:{
     user:"melidaradoncic@hotmail.com",
