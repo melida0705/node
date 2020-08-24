@@ -49,7 +49,6 @@ app.get('/send/:to/:username/:password',function(req,res)
   
 });
 
- 
 
 console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
 //res.send("Bla")
@@ -58,7 +57,7 @@ console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
     console.log(host);
     console.log(rand)
     url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
-    link="http://"+req.get('host')+"/verify?id="+rand;
+    //link="http://"+req.get('host')+"/verify?id="+rand;
     //  smtpTransport=nodemailer.createTransport({
     //   service:'hotmail',
       
