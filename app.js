@@ -22,38 +22,37 @@ const courses = [
   { id: 2, name: "Software Engineering" },
   { id: 3, name: "Human Computer Interaction" }
 ];
-// var rand,mailOptions,host,link;
-// var smtpTransport=nodemailer.createTransport("SMTP",{
-//   service:"Hotmail",
-//   auth:{
-//     user:"melidaradoncic@hotmail.com",
-//     password:"CocaColaMalboro123"
-//   }
-  
-// })
 
-// app.get('/send/:to',function(req,res)
-// {
-//  // rand=Math.floor((Math.random() * 100) + 54);
-//    // host=req.get('host');
-//     //link="http://"+req.get('host')+"/verify?id="+rand;
-//     link="klikni odek"
-//   mailOptions={
-//     from:"melidaradoncic@hotmail.com",
-//     to : req.params.to,
-//     subject : "Please confirm your Email account",
-//     html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
-// }
-// smtpTransport.sendMail(mailOptions, function(error, response){
-//   if(error){
-//          console.log(error);
-//      res.send("error");
-//   }else{
-//          console.log("Message sent: " + response.message);
-//      res.send("sent");
-//       }
-// });
-// });
+const smtpTransport=nodemailer.createTransport({
+  service:"hotmail",
+  auth:{
+    user:"melidaradoncic@hotmail.com",
+    password:"CocaColaMalboro123"
+  },
+  
+});
+
+app.get('/send/:to',function(req,res)
+{
+ // rand=Math.floor((Math.random() * 100) + 54);
+   // host=req.get('host');
+    //link="http://"+req.get('host')+"/verify?id="+rand;
+    link="klikni odek"
+  mailOptions={
+    from:"melidaradoncic@hotmail.com",
+    to : req.params.to,
+    subject : "Please confirm your Email account",
+    html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+}
+smtpTransport.sendMail(
+      {
+        from:"melidaradoncic@hotmail.com",
+        to : req.params.to,
+        subject : "Please confirm your Email account",
+        html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
+    
+      }).catch(err);
+});
 // app.get('/verify',function(req,res){
 //   console.log(req.protocol+":/"+req.get('host'));
 //   if((req.protocol+"://"+req.get('host'))==("http://"+host))
