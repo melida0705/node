@@ -1,7 +1,7 @@
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
-var nodemailer=require("nodemailer");
+const nodemailer=require("nodemailer");
 var mysql = require('mysql');
 app.use(express.json());
 var con = mysql.createConnection({
@@ -27,7 +27,7 @@ const smtpTransport=nodemailer.createTransport({
   service:"hotmail",
   auth:{
     user:"melidaradoncic@hotmail.com",
-    password:"CocaColaMalboro123"
+    password:""
   },
   
 });
@@ -37,14 +37,17 @@ app.get('/send/:to',function(req,res)
  // rand=Math.floor((Math.random() * 100) + 54);
    // host=req.get('host');
     //link="http://"+req.get('host')+"/verify?id="+rand;
+    const smtpTransport=nodemailer.createTransport({
+      service:"hotmail",
+      auth:{
+        user:"melidaradoncic@hotmail.com",
+        password:"CocaColaMalboro123"
+      },
+      
+    });
     link="klikni odek"
-  mailOptions={
-    from:"melidaradoncic@hotmail.com",
-    to : req.params.to,
-    subject : "Please confirm your Email account",
-    html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>" 
-}
-smtpTransport.sendMail(
+  
+  smtpTransport.sendMail(
       {
         from:"melidaradoncic@hotmail.com",
         to : req.params.to,
