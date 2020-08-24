@@ -41,8 +41,8 @@ app.get('/send/:to/:username/:password',function(req,res)
   port:587,
   host:'smpt.live.com',
   auth:{
-    user:"melidaradoncic@hotmail.com",
-    pass:"CocaColaMalboro123"
+    user:process.env.username,
+    pass:process.env.password
   }
   
 });
