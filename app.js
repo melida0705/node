@@ -82,8 +82,11 @@ app.get('/send/:to/:username/:password',function(req,res)
 //   catch{
 //     console.log("U KETS")
 //   }
+
     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
-      if(error) console.log(error);
+      if(error) {
+        res.send("false");
+      }
       else
       {   console.log("Radim");
           console.log(result);
