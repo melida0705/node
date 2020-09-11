@@ -87,7 +87,7 @@ app.get('/send/:to/:username/:password',function(req,res)
       else
       {   console.log("Radim");
           console.log(result);
-        //  res.send(rows);
+          res.send(rows);
          
       }
   })
