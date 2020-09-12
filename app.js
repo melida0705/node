@@ -178,13 +178,13 @@ app.get('/reviews/:restaurantid',function(req,res){
   })
 });
 app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,res,next){
-  con.query('insert into reviews (customer_username,restaurant_id,mark,review) values("'+req.params.customerid+'","'+req.params.restaurantid+'","'+req.params.mark+'","'+req.params.review+'")',function(error,rows,fields){
+  con.query("insert into reviews (customer_username,review,restaurant_id,mark) values("'+req.params.customerid+'","'+req.params.review+'""'+req.params.restaurantid+'","'+req.params.mark+'")",function(error,rows,fields){
       if(error) console.log(error);
       else
       {
           console.log(rows);
           res.send(rows);
-          next();
+          //next();
       }
   })
 });
