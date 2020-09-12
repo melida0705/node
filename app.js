@@ -292,7 +292,7 @@ app.put('/update-cart',function(req,res,next)
   })
 }
 })
-app.get('/user-info/username',function(req,res,next)
+app.get('/user-info/:username',function(req,res,next)
 {
 
   con.query("Select * from users where username='"+req.params.username+"'",function(error,rows,fields){
