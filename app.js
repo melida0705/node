@@ -292,6 +292,21 @@ app.put('/update-cart',function(req,res,next)
   })
 }
 })
+app.get('/user-info/username',function(req,res,next)
+{
+
+  con.query("Select * from users where username='"+req.params.username+"'",function(error,rows,fields){
+    if(error) console.log(error);
+    else{
+      console.log("Radim");
+      res.send(rows);
+    }
+  })
+}
+
+
+
+)
 app.get('/cart/:id',function(req,res,next){
   con.query("select * from cart INNER JOIN food ON cart.food_id=food.food_id where username='" + req.params.id + "'",function(error,rows,fields){
       if(error) console.log(error);
