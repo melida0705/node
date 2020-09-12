@@ -302,11 +302,19 @@ app.get('/user-info/:username',function(req,res,next)
       res.send(rows);
     }
   })
+});
+
+app.put('/update-user/:username',function(req,res,next)
+{
+con.query("update users SET first_name='"+req.body.firstName+"',last_name='"+req.body.lastName+"',adress='"+req.body.address+"' where username='"+req.params.username+"'",function(error,rows,fields)
+{
+if(error) console.log(error);
+else{
+  console.log("radim");
 }
+})
+})
 
-
-
-)
 app.get('/cart/:id',function(req,res,next){
   con.query("select * from cart INNER JOIN food ON cart.food_id=food.food_id where username='" + req.params.id + "'",function(error,rows,fields){
       if(error) console.log(error);
