@@ -586,7 +586,7 @@ app.get('/seller-allorder/:restaurantid',function(req,res,next)
 });
 app.get('/customer-allorder/:customerid',function(req,res,next)
 {
-  con.query("SELECT  * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_id INNER JOIN food ON food.food_id=order_details.order_food_id where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='0' and order_preparation='0' and order_delivered='0'" ,function(error,rows,fields){
+  con.query("SELECT  * FROM orders  where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='0' and order_preparation='0' and order_delivered='0'" ,function(error,rows,fields){
       if(error) console.log(error);
       else
       {   console.log("Radim");
@@ -596,6 +596,18 @@ app.get('/customer-allorder/:customerid',function(req,res,next)
       }
   })
 });
+app.get('/customer-allfood/:customerid',function(req,res,next)
+{
+  con.query("SELECT  * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_id INNER JOIN food ON food.food_id=order_details.order_food_id where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='0' and order_preparation='0' and order_delivered='0'" ,function(error,rows,fields){
+    if(error) console.log(error);
+    else
+    {   console.log("Radim");
+        console.log(rows);
+        res.send(rows);
+        next();
+    }
+})
+})
 app.get('/seller-allpreparationorder/:restaurantid',function(req,res,next)
 {
   con.query("SELECT  * FROM orders  where orders.restaurant_id='"+req.params.restaurantid+"' and order_shipped='0' and order_preparation='1'" ,function(error,rows,fields){
