@@ -398,7 +398,7 @@ app.post('/place-order/:customerid/:amount',function(req,res,next){
             // else
             // {
                             
-             con.query("insert into order_details(order_id,order_food_id) values ('"+orderid+"','"+id[i].food_id+"')",function(error,result)
+             con.query("insert into order_details(order_id,order_food_id,quantity) values ('"+orderid+"','"+id[i].food_id+"','"+id[i].quantity+"')",function(error,result)
                 {
                      console.log(result);
                      console.log("im working");
