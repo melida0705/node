@@ -306,7 +306,7 @@ app.get('/user-info/:username',function(req,res,next)
 
 app.put('/update-user/:username',function(req,res,next)
 {
-con.query("update users SET first_name='"+req.body.firstName+"',last_name='"+req.body.lastName+"',adress='"+req.body.address+"' where username='"+req.params.username+"'",function(error,rows,fields)
+con.query("update users SET first_name='"+req.body.first_name+"',last_name='"+req.body.last_name+"',adress='"+req.body.user_address+"' where username='"+req.params.username+"'",function(error,rows,fields)
 {
 if(error) console.log(error);
 else{
