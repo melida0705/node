@@ -268,6 +268,30 @@ app.post('/addcart/:customerid/:restaurantid/:id/:price',function(req,res,next){
       }
   })
 })
+app.put('/update-cart',function(req,res,next)
+{
+  var id=req.body.cart;
+  var restaurantID=id[0].restaurant_id;
+  var food_id=[];
+
+  for (i = 0; i < id.length; i++) 
+  {
+     
+  
+  con.query("UPDATE cart SET quantity='"+id[i].quantity+"' where id='"+id[i].id+"'",function(error,result){
+
+      if(error) console.log(error);
+      else
+      {   console.log("Radim");
+      
+          // console.log("sta sam update",req.params.orderid);
+          // res.send(rows);
+
+          //next();
+      }
+  })
+}
+})
 app.get('/cart/:id',function(req,res,next){
   con.query("select * from cart INNER JOIN food ON cart.food_id=food.food_id where username='" + req.params.id + "'",function(error,rows,fields){
       if(error) console.log(error);
@@ -290,6 +314,7 @@ app.delete('/deletecart/:customerid/:foodid',function(req,res,next){
       }
   })
 })
+
 app.post('/place-order/:customerid/:sellerid/:foodid/:shipName/:address',function(req,res,next){
   con.query("insert into orders (order_customer_username,order_seller_username,order_shipname,order_address) values('" +req.params.customerid + "','" +req.params.sellerid+ "','" +req.params.shipName + "','" +req.params.address + "')",function(error,result){
 
