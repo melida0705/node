@@ -178,6 +178,19 @@ app.get('/reviews/:restaurantid',function(req,res){
   })
 });
 
+app.post('/addreview/:customerid/:restaurantid/:mark/:review',function(req,res,next){
+
+  con.query("insert into reviews (customer_username,review,restaurant_id,mark) values('"+req.params.customerid+"','"+ req.params.review + "','"+ req.params.restaurantid + "','"+req.params.mark+"')",function(error,result){
+      if(error) console.log(error);
+      else
+      {   console.log("Radim");
+          console.log(result);
+          res.send(result);
+          next();
+      }
+  })
+})
+
 app.post('/leavereview/:customerid/:restaurantid:/:mark/:review',function(req,res,next){
 
   con.query("insert into reviews (customer_username,review,restaurant_id,mark) values ('"+req.params.customerid+"','"+ req.params.review +"','"+req.params.restaurantid+"','"+req.params.mark+"')",function(error,rows,fields){
