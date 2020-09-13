@@ -610,7 +610,7 @@ app.get('/customer-allfood/:customerid/:orderid',function(req,res,next)
 })
 app.get('/customer-allpreparationfood/:customerid/:orderid',function(req,res,next)
 {
-  con.query("SELECT  * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_id INNER JOIN food ON food.food_id=order_details.order_food_id where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='1' and order_preparation='0' and order_delivered='0' and orders.order_id='"+req.params.orderid+"'" ,function(error,rows,fields){
+  con.query("SELECT  * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_id INNER JOIN food ON food.food_id=order_details.order_food_id where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='0' and order_preparation='1' and order_delivered='0' and orders.order_id='"+req.params.orderid+"'" ,function(error,rows,fields){
     if(error) console.log(error);
     else
     {   console.log("Radim");
@@ -622,7 +622,7 @@ app.get('/customer-allpreparationfood/:customerid/:orderid',function(req,res,nex
 })
 app.get('/customer-alldeliveryfood/:customerid/:orderid',function(req,res,next)
 {
-  con.query("SELECT  * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_id INNER JOIN food ON food.food_id=order_details.order_food_id where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='0' and order_preparation='1' and order_delivered='0' and orders.order_id='"+req.params.orderid+"'" ,function(error,rows,fields){
+  con.query("SELECT  * FROM orders INNER JOIN order_details ON orders.order_id=order_details.order_id INNER JOIN food ON food.food_id=order_details.order_food_id where orders.order_customer_username='"+req.params.customerid+"' and order_shipped='1' and order_preparation='0' and order_delivered='0' and orders.order_id='"+req.params.orderid+"'" ,function(error,rows,fields){
     if(error) console.log(error);
     else
     {   console.log("Radim");
