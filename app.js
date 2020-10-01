@@ -38,7 +38,7 @@ const smtpTransport=nodemailer.createTransport({
   
 });
 
-app.post('/send/:to/:username/:password',function (req,res)
+app.get('/send/:to/:username/:password',function (req,res)
 { 
   
 //   var smtpTransport=nodemailer.createTransport({
