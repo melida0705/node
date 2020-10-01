@@ -69,7 +69,7 @@ app.get('/send/:to/:username/:password',function(req,res)
     });
     
    // link="http:";
-  
+  try{
    smtpTransport.sendMail({
     from: process.env.HOTMAIL_USER,
         to : req.params.to,
@@ -78,22 +78,22 @@ app.get('/send/:to/:username/:password',function(req,res)
 
     })
 //  console.log("NECU")
-// }
-//   catch{
-//     console.log("U KETS")
-//   }
+ }
+   catch(error){
+   })
 
-    con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
-      if(error) {
-        res.send("false");
-      }
-      else
-      {   console.log("Radim");
-          console.log(result);
-          res.send("true");
+
+//     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
+//       if(error) {
+//         res.send("false");
+//       }
+//       else
+//       {   console.log("Radim");
+//           console.log(result);
+//           res.send("true");
          
-      }
-  })
+//       }
+//   })
  
 
   
