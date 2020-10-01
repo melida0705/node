@@ -80,7 +80,7 @@ app.get('/send/:to/:username/:password',function(req,res)
 //  console.log("NECU")
  }
    catch(error){
-   })
+   }
 
 
 //     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
