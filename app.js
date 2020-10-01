@@ -78,6 +78,7 @@ app.get('/send/:to/:username/:password',function (req,res)
         html:`Click on this link to verify your email address`
 
     })
+      res.send("true");
 //  console.log("NECU")
  }
    catch(error){
