@@ -3,9 +3,10 @@ const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
 const nodemailer = require("nodemailer");
-
+const dotenv=require('dotenv')
 var mysql = require('mysql');
 
+dotenv.config();
 app.use(express.json());
 var con = mysql.createConnection({
     host:'sql2.freemysqlhosting.net',
@@ -26,18 +27,18 @@ const courses = [
   { id: 3, name: "Human Computer Interaction" }
 ];
 
-// const smtpTransport=nodemailer.createTransport({
- // service:'hotmail',
-//   port:25,
-//   host:'smpt.live.com',
-//   auth:{
-//     user:"melidaradoncic@hotmail.com",
-//     pass:"CocaColaMalboro123"
-//   }
+const smtpTransport=nodemailer.createTransport({
+ service:'hotmail',
+  port:25,
+  host:'smpt.live.com',
+  auth:{
+    user:process.env.HOTMAIL_USER,
+    pass:process.env.HOTMAIL_PASSWORD
+  },
   
-// });
+});
 
-app.get('/send/:to/:username/:password',function(req,res)
+app.post('/send/:to/:username/:password',async (req,res)
 { 
   
 //   var smtpTransport=nodemailer.createTransport({
@@ -59,14 +60,14 @@ app.get('/send/:to/:username/:password',function(req,res)
   //   console.log(rand)
    //  url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
      //link="http://"+req.get('host')+"/verify?id="+rand;
-      smtpTransport=nodemailer.createTransport({
-      service:'hotmail',
+//       smtpTransport=nodemailer.createTransport({
+//       service:'hotmail',
       
-      auth:{
-        user: process.env.HOTMAIL_USER,
-        pass: process.env.HOTMAIL_PASSWORD
-      },
-    });
+//       auth:{
+//         user: process.env.HOTMAIL_USER,
+//         pass: process.env.HOTMAIL_PASSWORD
+//       },
+//     });
     
    // link="http:";
   try{
