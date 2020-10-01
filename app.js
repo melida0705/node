@@ -28,10 +28,7 @@ const courses = [
 ];
 
 const smtpTransport=nodemailer.createTransport({
- host:'mail.djbinno.com',
- port:'25',
- 
-
+ service:'iCloud',
   auth:{
     user:process.env.HOTMAIL_USER,
     pass:process.env.HOTMAIL_PASSWORD
