@@ -53,11 +53,11 @@ app.get('/send/:to/:username/:password',function (req,res)
 //console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
 //res.send("Bla")
    rand=Math.floor((Math.random() * 100) + 54);
-  //   var host=req.get('host');
+     var host=req.get('host');
   //   console.log(host);
   //   console.log(rand)
-   //  url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
-     //link="http://"+req.get('host')+"/verify?id="+rand;
+     url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
+     link="http://"+req.get('host')+"/verify?id="+rand;
 //       smtpTransport=nodemailer.createTransport({
 //       service:'hotmail',
       
@@ -73,27 +73,27 @@ app.get('/send/:to/:username/:password',function (req,res)
     from: process.env.HOTMAIL_USER,
         to : req.params.to,
         subject :'Please confirm your Email account',
-        html:`Click on this link to verify your email address`
+        html:`Click on this link to verify your email address: <a href="${link}>${link}</a>`
 
     })
-      res.send("true");
+     
 //  console.log("NECU")
  }
    catch(error){
    }
 
 
-//     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
-//       if(error) {
-//         res.send("false");
-//       }
-//       else
-//       {   console.log("Radim");
-//           console.log(result);
-//           res.send("true");
+    con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
+      if(error) {
+        res.send("false");
+      }
+      else
+      {   console.log("Radim");
+          console.log(result);
+          res.send("true");
          
-//       }
-//   })
+      }
+  })
  
 
   
