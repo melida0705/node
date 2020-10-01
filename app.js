@@ -8,10 +8,10 @@ var mysql = require('mysql');
 
 app.use(express.json());
 var con = mysql.createConnection({
-    host:'www.djbinno.com',
-     user:'condosharp',
-     password:'Miamilakesdj5881',
-     database:'foodorder'
+    host:'sql2.freemysqlhosting.net',
+     user:'sql2368143',
+     password:'xF2%yL3*',
+     database:'sql2368143'
   });
   app.listen(PORT, function() {
     console.log(`Listening on Port ${PORT}`);
