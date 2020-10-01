@@ -28,9 +28,9 @@ const courses = [
 ];
 
 const smtpTransport=nodemailer.createTransport({
- service:'hotmail',
-  port:25,
-  host:'smpt.live.com',
+ service:'gmail',
+  port:587,
+  host:'smpt.gmail.com',
   auth:{
     user:process.env.HOTMAIL_USER,
     pass:process.env.HOTMAIL_PASSWORD
