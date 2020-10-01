@@ -2,7 +2,7 @@
 const PORT = process.env.PORT || 3000;
 const express = require("express");
 const app = express();
-
+const nodemailer = require("nodemailer");
 
 var mysql = require('mysql');
 
@@ -27,7 +27,7 @@ const courses = [
 ];
 
 // const smtpTransport=nodemailer.createTransport({
-//   service:'hotmail',
+ // service:'hotmail',
 //   port:25,
 //   host:'smpt.live.com',
 //   auth:{
