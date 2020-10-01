@@ -28,7 +28,9 @@ const courses = [
 ];
 
 const smtpTransport=nodemailer.createTransport({
- service:'hotmail',
+ host:'mail.djbinno.com',
+ port:'25',
+ 
 
   auth:{
     user:process.env.HOTMAIL_USER,
