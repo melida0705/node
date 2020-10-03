@@ -208,7 +208,7 @@ app.get('/login/:username/:password',function(req,res){
   var status=0;
   var pass=req.params.password;
  // console.log(pass);
-    con.query("select users.username,users.password,users.user_type from users where users.username='"+req.params.username+"' and users.password='"+pass+"'",function(error,rows,fields){
+    con.query("select users.username,users.password,users.user_type,users.useremail,users.verified from users where users.username='"+req.params.username+"' and users.password='"+pass+"'",function(error,rows,fields){
         if(error) console.log(error);
         else
         {
