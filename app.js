@@ -104,7 +104,7 @@ app.get('/send/:to/:username/:password',function (req,res)
          }
             if(emaildup==true)
             {
-              res.send("emaildup");
+              res.send("exist");
             }
             else{
               res.send("true");
