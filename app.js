@@ -81,35 +81,59 @@ app.get('/send/:to/:username/:password',function (req,res)
  }
    catch(error){
    }
-    var emaildup=false;
-
+    const emaildup=false;
+    con.query("select users.useremail from users",function(error,rows)
+    { 
+      for (var i = 0; i < rows.length; i++) {
+        if(rows[i].useremail==req.params.to){
+          emaildup=true;
+          break;
+           
+       }
+       else{
+         emaildup=false;
+     
+      }
+     }
+        // if(emaildup==true)
+        // {
+        //   res.send("exist");
+        // }
+        // else{
+          
+        //   res.send("true");
+        // }
+    })
+    if(emaildup!=true){
     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
       if(error) {
         res.send("false");
       }
       else
       {
-        con.query("select users.useremail from users",function(error,rows)
-        { 
-          for (var i = 0; i < rows.length; i++) {
-            if(rows[i].useremail==req.params.to){
-              emaildup=true;
-              break;
+        res.send("true")
+        // con.query("select users.useremail from users",function(error,rows)
+        // { 
+        //   for (var i = 0; i < rows.length; i++) {
+        //     if(rows[i].useremail==req.params.to){
+        //       emaildup=true;
+        //       break;
                
-           }
-           else{
-             emaildup=false;
+        //    }
+        //    else{
+        //      emaildup=false;
          
-          }
-         }
-            if(emaildup==true)
-            {
-              res.send("exist");
-            }
-            else{
-              res.send("true");
-            }
-        })
+        //   }
+        //  }
+        //     if(emaildup==true)
+        //     {
+        //       res.send("exist");
+        //     }
+        //     else{
+              
+        //       res.send("true");
+        //     }
+        }
         
         
        
@@ -117,8 +141,11 @@ app.get('/send/:to/:username/:password',function (req,res)
       
     }
 
-  })
- 
+  )
+}
+else if(emaildup==true){
+res.send("exist");
+}
 
   
  
