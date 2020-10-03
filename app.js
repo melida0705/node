@@ -83,6 +83,7 @@ app.get('/send/:to/:username/:password',function (req,res)
 //    catch(error){
 //    }
     var emaildup=false;
+    var message;
     con.query("select users.useremail from users",function(error,rows)
     { 
       if(error){
@@ -103,11 +104,12 @@ app.get('/send/:to/:username/:password',function (req,res)
     if(emaildup!=true){
       con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
         if(error) {
-          res.send("false");
+         message="Userexist";
         }
         else
         {
-          res.send("true")
+         // res.send("true")
+        message="true";
           // con.query("select users.useremail from users",function(error,rows)
           // { 
           //   for (var i = 0; i < rows.length; i++) {
@@ -140,9 +142,11 @@ app.get('/send/:to/:username/:password',function (req,res)
     )
   }
   else if(emaildup==true){
-  res.send("exist");
+    message="emailexist";
+   
   }
      }
+     res.json({message: message});
         // if(emaildup==true)
         // {
         //   res.send("exist");
@@ -152,7 +156,7 @@ app.get('/send/:to/:username/:password',function (req,res)
         //   res.send("true");
         // }
     })
-console.log("MAIL"+emaildup);
+
    
   
  
