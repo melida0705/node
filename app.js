@@ -102,7 +102,7 @@ app.get('/send/:to/:username/:password',function (req,res)
     }
     console.log("U else smo"+emaildup);
     if(emaildup!=true){
-      con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
+      con.query("insert into users (username,password,user_type,useremail,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac','"+req.params.to+"',0,'"+rand+"')",function(error,result){
         if(error) {
          message="Userexist";
          
