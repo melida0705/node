@@ -117,7 +117,7 @@ app.get('/send/:to/:username/:password',function (req,res)
            from: process.env.HOTMAIL_USER,
                to : req.params.to,
                subject :'Please confirm your Email account',
-               html:"Hello,<br> Please Click on the link to verify your email.<br><a href="+url+">Click here to verify</a>"
+               html:"Please Click on the link to verify your email <a href="+url+">Click here to verify</a>"
        
            })
             
