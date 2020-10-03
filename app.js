@@ -81,18 +81,42 @@ app.get('/send/:to/:username/:password',function (req,res)
  }
    catch(error){
    }
-
+    emaildup=false;
 
     con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
       if(error) {
         res.send("false");
       }
       else
-      {   console.log("Radim");
-          console.log(result);
-          res.send("true");
+      {
+        con.query("select users.useremail from users",function(error,rows)
+        { 
+          for (var i = 0; i < rows.length; i++) {
+            if(rows[i].useremail!=req.params.to){
+              emaildup=false;
+              
+               
+           }
+           else{
+             emaildup=true;
          
-      }
+          }
+         }
+            if(emaildup==true)
+            {
+              res.send("emaildup");
+            }
+            else{
+              res.send("true");
+            }
+        })
+        
+        
+       
+         
+      
+    }
+
   })
  
 
