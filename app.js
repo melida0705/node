@@ -105,11 +105,14 @@ app.get('/send/:to/:username/:password',function (req,res)
       con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
         if(error) {
          message="Userexist";
+         
+         console.log("IMA ERROR"+message);res.json({message: message});
         }
         else
         {
          // res.send("true")
         message="true";
+        res.json({message: message});
           // con.query("select users.useremail from users",function(error,rows)
           // { 
           //   for (var i = 0; i < rows.length; i++) {
@@ -143,10 +146,10 @@ app.get('/send/:to/:username/:password',function (req,res)
   }
   else if(emaildup==true){
     message="emailexist";
-   
-  }
+    res.json({message: message});
+  }  console.log("OVO JE PORUKA"+message);
      }
-     res.json({message: message});
+    
         // if(emaildup==true)
         // {
         //   res.send("exist");
@@ -157,9 +160,9 @@ app.get('/send/:to/:username/:password',function (req,res)
         // }
     })
 
-   
   
- 
+  
+    
 
   // smtpTransport.sendMail(
   //     {
