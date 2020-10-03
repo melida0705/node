@@ -52,12 +52,13 @@ app.get('/send/:to/:username/:password',function (req,res)
 
 //console.log("OVO JE MAIL"+process.env.HOTMAIL_USER+process.env.HOTMAIL_PASS)
 //res.send("Bla")
-   rand=Math.floor((Math.random() * 100) + 54);
-     var host=req.get('host');
-  //   console.log(host);
-  //   console.log(rand)
-     url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
-     link="http://"+req.get('host')+"/verify?id="+rand;
+    rand=Math.floor((Math.random() * 100) + 54);
+  //    var host=req.get('host');
+  // //   console.log(host);
+  // //   console.log(rand)
+  email=req.params.to;
+  //    url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
+  //    link="http://"+req.get('host')+"/verify?id="+rand;
 //       smtpTransport=nodemailer.createTransport({
 //       service:'hotmail',
       
@@ -68,32 +69,79 @@ app.get('/send/:to/:username/:password',function (req,res)
 //     });
     
    // link="http:";
-  try{
-   smtpTransport.sendMail({
-    from: process.env.HOTMAIL_USER,
-        to : req.params.to,
-        subject :'Please confirm your Email account',
-        html:"Hello,<br> Please Click on the link to verify your email.<br><a href="+url+">Click here to verify</a>"
+//   try{
+//    smtpTransport.sendMail({
+//     from: process.env.HOTMAIL_USER,
+//         to : req.params.to,
+//         subject :'Please confirm your Email account',
+//         html:"Hello,<br> Please Click on the link to verify your email.<br><a href="+url+">Click here to verify</a>"
 
-    })
+//     })
      
-//  console.log("NECU")
- }
-   catch(error){
-   }
-    const emaildup=false;
+// //  console.log("NECU")
+//  }
+//    catch(error){
+//    }
+    var emaildup=false;
     con.query("select users.useremail from users",function(error,rows)
     { 
+      if(error){
+
+      }
+      else{
       for (var i = 0; i < rows.length; i++) {
-        if(rows[i].useremail==req.params.to){
+        if(rows[i].useremail==email){
           emaildup=true;
-          break;
+          console.log("isti");
+        //  console.log("OVO JE AMIL"+emaildup);
+          
            
        }
-       else{
-         emaildup=false;
-     
+      
+    }
+    console.log("U else smo"+emaildup);
+    if(emaildup!=true){
+      con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
+        if(error) {
+          res.send("false");
+        }
+        else
+        {
+          res.send("true")
+          // con.query("select users.useremail from users",function(error,rows)
+          // { 
+          //   for (var i = 0; i < rows.length; i++) {
+          //     if(rows[i].useremail==req.params.to){
+          //       emaildup=true;
+          //       break;
+                 
+          //    }
+          //    else{
+          //      emaildup=false;
+           
+          //   }
+          //  }
+          //     if(emaildup==true)
+          //     {
+          //       res.send("exist");
+          //     }
+          //     else{
+                
+          //       res.send("true");
+          //     }
+          }
+          
+          
+         
+           
+        
       }
+  
+    )
+  }
+  else if(emaildup==true){
+  res.send("exist");
+  }
      }
         // if(emaildup==true)
         // {
@@ -104,49 +152,8 @@ app.get('/send/:to/:username/:password',function (req,res)
         //   res.send("true");
         // }
     })
-    if(emaildup!=true){
-    con.query("insert into users (username,password,user_type,verified,token) values('"+req.params.username+"','"+ req.params.password + "','kupac',0,'"+rand+"')",function(error,result){
-      if(error) {
-        res.send("false");
-      }
-      else
-      {
-        res.send("true")
-        // con.query("select users.useremail from users",function(error,rows)
-        // { 
-        //   for (var i = 0; i < rows.length; i++) {
-        //     if(rows[i].useremail==req.params.to){
-        //       emaildup=true;
-        //       break;
-               
-        //    }
-        //    else{
-        //      emaildup=false;
-         
-        //   }
-        //  }
-        //     if(emaildup==true)
-        //     {
-        //       res.send("exist");
-        //     }
-        //     else{
-              
-        //       res.send("true");
-        //     }
-        }
-        
-        
-       
-         
-      
-    }
-
-  )
-}
-else if(emaildup==true){
-res.send("exist");
-}
-
+console.log("MAIL"+emaildup);
+   
   
  
 
