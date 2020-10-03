@@ -92,13 +92,13 @@ app.get('/send/:to/:username/:password',function (req,res)
         con.query("select users.useremail from users",function(error,rows)
         { 
           for (var i = 0; i < rows.length; i++) {
-            if(rows[i].useremail!=req.params.to){
-              emaildup=false;
+            if(rows[i].useremail==req.params.to){
+              emaildup=true;
               
                
            }
            else{
-             emaildup=true;
+             emaildup=false;
          
           }
          }
