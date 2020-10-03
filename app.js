@@ -218,6 +218,20 @@ app.get('/login/:username/:password',function(req,res){
         }
     })
 });
+app.get('/loginEmail/:email/:password',function(req,res){
+  var status=0;
+  var pass=req.params.password;
+ // console.log(pass);
+    con.query("select users.username,users.password,users.user_type,users.useremail,users.verified from users where users.useremail='"+req.params.email+"' and users.password='"+pass+"'",function(error,rows,fields){
+        if(error) console.log(error);
+        else
+        {
+            console.log(rows);
+            
+            res.send(rows);
+        }
+    })
+});
 app.get('/menu/:id',function(req,res,next){
   var  ids=req.params.id;
      console.log(ids);
