@@ -57,7 +57,7 @@ app.get('/send/:to/:username/:password',function (req,res)
   // //   console.log(host);
   // //   console.log(rand)
   email=req.params.to;
-  //    url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
+      url="https://foodorder0705.herokuapp.com/verify/"+req.params.username+"/"+rand;
   //    link="http://"+req.get('host')+"/verify?id="+rand;
 //       smtpTransport=nodemailer.createTransport({
 //       service:'hotmail',
@@ -69,19 +69,19 @@ app.get('/send/:to/:username/:password',function (req,res)
 //     });
     
    // link="http:";
-//   try{
-//    smtpTransport.sendMail({
-//     from: process.env.HOTMAIL_USER,
-//         to : req.params.to,
-//         subject :'Please confirm your Email account',
-//         html:"Hello,<br> Please Click on the link to verify your email.<br><a href="+url+">Click here to verify</a>"
+  try{
+   smtpTransport.sendMail({
+    from: process.env.HOTMAIL_USER,
+        to : req.params.to,
+        subject :'Please confirm your Email account',
+        html:"Hello,<br> Please Click on the link to verify your email.<br><a href="+url+">Click here to verify</a>"
 
-//     })
+    })
      
-// //  console.log("NECU")
-//  }
-//    catch(error){
-//    }
+//  console.log("NECU")
+ }
+   catch(error){
+   }
     var emaildup=false;
     var message;
     con.query("select users.useremail from users",function(error,rows)
