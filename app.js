@@ -9,7 +9,7 @@ var mysql = require('mysql');
 dotenv.config();
 app.use(express.json());
 var con = mysql.createConnection({
-    host:'djbinno.com',
+    host:'www.djbinno.com',
      user:'condosharp',
      password:'Miamilakesdj5881',
      database:'foodorder'
