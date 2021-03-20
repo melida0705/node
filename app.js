@@ -9,9 +9,9 @@ var mysql = require('mysql');
 dotenv.config();
 app.use(express.json());
 var con = mysql.createConnection({
-    host:'www.djbinno.com',
-     user:'condosharp',
-     password:'Miamilakesdj5881',
+    host:'localhost',
+     user:'root',
+     password:'',
      database:'foodorder'
   });
   app.listen(PORT, function() {
