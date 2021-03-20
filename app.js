@@ -9,10 +9,10 @@ var mysql = require('mysql');
 dotenv.config();
 app.use(express.json());
 var con = mysql.createConnection({
-    host:'localhost',
-     user:'root',
-     password:'',
-     database:'foodorder'
+    host:'sql11.freemysqlhosting.net',
+     user:'sql11400291',
+     password:'mrdDyc2N3F',
+     database:'sql11400291'
   });
   app.listen(PORT, function() {
     console.log(`Listening on Port ${PORT}`);
